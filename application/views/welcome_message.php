@@ -1,86 +1,56 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
 
-	<style type="text/css">
+<?php $this->load->view('includes/header.php') ?>
+<?php  $this->load->view('includes/nav.php') ?>
 
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
 
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
 
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-		text-decoration: none;
-	}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade" data-aos-delay="1500">
+    <div class="container">
+     
+      <h1 class="text-center">Web Image Scraper</h1>
 
-	a:hover {
-		color: #97310e;
-	}
+    <form action="<?= base_url('scraper/scrape') ?>" method="post">
+        <div class="input-group">
+          <input class="form-control" type="url" placeholder="Enter web url to get images" name="url" id="url" value="<?= $url ?? '' ?>" required>
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">Scrape</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section><!-- End Hero Section -->
 
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
+  <main id="main" data-aos="fade" data-aos-delay="1500">
 
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+      <div class="container-fluid">
+<?php if (isset($error)) { ?>
+          <p><?= $error ?></p>
+  <?php } ?>
+        <div class="row gy-4 justify-content-center">
+          <?php if (isset($images) && count($images)) { ?>
+            <?php foreach ($images as $key => $image) { ?>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                      <div class="gallery-item h-100 ">
+                        <img src="<?= $image ?>" class="img-fluid" alt="">
+                        <div class="gallery-links d-flex align-items-center justify-content-center">
+                          <a href="<?= $image ?>"  class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
+                          <!-- <a href="#" class="details-link"><i class="bi bi-link-45deg"></i></a> -->
+                        </div>
+                      </div>
+                    </div><!-- End Gallery Item -->
+              <?php } ?>
+        <?php } ?>
 
-	#body {
-		margin: 0 15px 0 15px;
-		min-height: 96px;
-	}
+        </div>
 
-	p {
-		margin: 0 0 10px;
-		padding:0;
-	}
+      </div>
+    </section><!-- End Gallery Section -->
 
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
+  </main><!-- End #main -->
 
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
-</head>
-<body>
+  <?php $this->load->view('includes/footer.php') ?>
 
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
-</div>
-
-</body>
-</html>
+  

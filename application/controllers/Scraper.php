@@ -43,7 +43,7 @@ class Scraper extends CI_Controller
         }
 
         // Load the view with the scraped data
-        $this->load->view('scrapper/scraper_view', $data);
+        $this->load->view('welcome_message', $data);
     }
 
 }
